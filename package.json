@@ -1,0 +1,25 @@
+{
+  "name": "timecode-svg-steg",
+  "version": "1.0.0",
+  "description": "SVG Steganography System - Hide data in beautiful vector graphics using 7D multi-channel encoding",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "demo": "node examples/demo.js",
+    "test": "node examples/test.js"
+  },
+  "keywords": [
+    "steganography",
+    "svg",
+    "encoding",
+    "encryption",
+    "visual-cryptography",
+    "timecode"
+  ],
+  "author": "Timecode",
+  "license": "MIT",
+  "dependencies": {
+    "pako": "^2.1.0"
+  }
+}
