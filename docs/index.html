@@ -4,303 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TIMECODE::STEGSVG - SVG Steganography System</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
 </head>
 <body>
   <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <h1 class="title">
-        <span class="gradient-text">TIMECODE::STEGSVG</span>
-      </h1>
-      <p class="subtitle">Hide data in beautiful vector graphics using 7D multi-channel steganography</p>
-    </div>
-  </header>
+  <div id="header-component"></div>
 
   <!-- Main Content -->
   <main class="container">
     <!-- Navigation Tabs -->
-    <div class="tabs">
-      <button class="tab active" data-tab="encode">🎨 Encode</button>
-      <button class="tab" data-tab="decode">🔍 Decode</button>
-      <button class="tab" data-tab="examples">📚 Examples</button>
-      <button class="tab" data-tab="about">ℹ️ About</button>
-    </div>
+    <div id="tabs-component"></div>
 
-    <!-- Encode Tab -->
-    <div id="encode-tab" class="tab-content active">
-      <div class="card">
-        <h2>Encode Data into SVG</h2>
-
-        <div class="form-group">
-          <label for="encode-data">Data to Hide (JSON or plain text)</label>
-          <textarea
-            id="encode-data"
-            class="textarea"
-            placeholder='{ "message": "Secret data!", "timestamp": 1234567890 }'
-            rows="6"
-          ></textarea>
-        </div>
-
-        <div class="row">
-          <div class="form-group">
-            <label for="encode-style">Visual Style</label>
-            <select id="encode-style" class="select">
-              <option value="geometric">🔷 Geometric</option>
-              <option value="organic">🌿 Organic</option>
-              <option value="logo">🎯 Logo</option>
-              <option value="qr-hybrid">📱 QR Hybrid</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="encode-size">SVG Size</label>
-            <select id="encode-size" class="select">
-              <option value="600">600×600</option>
-              <option value="800" selected>800×800</option>
-              <option value="1000">1000×1000</option>
-              <option value="1200">1200×1200</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="encode-key">
-            🔐 Encryption Key (optional)
-            <span class="help-text">Leave empty for no encryption</span>
-          </label>
-          <input
-            type="text"
-            id="encode-key"
-            class="input"
-            placeholder="my-secret-key"
-          />
-        </div>
-
-        <button id="encode-btn" class="btn btn-primary btn-large">
-          ✨ Generate SVG
-        </button>
-
-        <div id="encode-output" class="output hidden">
-          <h3>Generated SVG</h3>
-          <div class="stats">
-            <span id="encode-stats"></span>
-          </div>
-          <div class="svg-preview" id="svg-preview"></div>
-          <div class="btn-group">
-            <button id="download-svg-btn" class="btn btn-secondary">
-              📥 Download SVG
-            </button>
-            <button id="copy-svg-btn" class="btn btn-secondary">
-              📋 Copy SVG Code
-            </button>
-          </div>
-          <details class="code-details">
-            <summary>View SVG Source</summary>
-            <pre id="svg-source" class="code"></pre>
-          </details>
-        </div>
-      </div>
-    </div>
-
-    <!-- Decode Tab -->
-    <div id="decode-tab" class="tab-content">
-      <div class="card">
-        <h2>Decode Data from SVG</h2>
-
-        <div class="form-group">
-          <label for="decode-svg">SVG Code</label>
-          <textarea
-            id="decode-svg"
-            class="textarea"
-            placeholder="Paste your SVG code here..."
-            rows="8"
-          ></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="decode-file">Or Upload SVG File</label>
-          <input
-            type="file"
-            id="decode-file"
-            class="input"
-            accept=".svg,image/svg+xml"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="decode-key">
-            🔐 Decryption Key (if encrypted)
-            <span class="help-text">Leave empty if no encryption was used</span>
-          </label>
-          <input
-            type="text"
-            id="decode-key"
-            class="input"
-            placeholder="my-secret-key"
-          />
-        </div>
-
-        <button id="decode-btn" class="btn btn-primary btn-large">
-          🔓 Extract Hidden Data
-        </button>
-
-        <div id="decode-output" class="output hidden">
-          <h3>Decoded Data</h3>
-          <div class="svg-preview" id="decode-svg-preview"></div>
-          <pre id="decode-result" class="code"></pre>
-          <button id="copy-data-btn" class="btn btn-secondary">
-            📋 Copy Data
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Examples Tab -->
-    <div id="examples-tab" class="tab-content">
-      <div class="card">
-        <h2>Examples & Use Cases</h2>
-
-        <div class="example-grid">
-          <div class="example-card">
-            <h3>🔑 API Keys</h3>
-            <p>Hide API credentials in company logos or documentation graphics.</p>
-            <button class="btn btn-secondary btn-small" onclick="loadExample('apikey')">
-              Try Example
-            </button>
-          </div>
-
-          <div class="example-card">
-            <h3>📝 Secret Messages</h3>
-            <p>Embed encrypted messages in decorative SVG images.</p>
-            <button class="btn btn-secondary btn-small" onclick="loadExample('message')">
-              Try Example
-            </button>
-          </div>
-
-          <div class="example-card">
-            <h3>💾 Configuration Data</h3>
-            <p>Store app configurations in visual branding assets.</p>
-            <button class="btn btn-secondary btn-small" onclick="loadExample('config')">
-              Try Example
-            </button>
-          </div>
-
-          <div class="example-card">
-            <h3>🎫 Digital Tickets</h3>
-            <p>Create visually appealing tickets with embedded validation data.</p>
-            <button class="btn btn-secondary btn-small" onclick="loadExample('ticket')">
-              Try Example
-            </button>
-          </div>
-        </div>
-
-        <div class="capacity-info">
-          <h3>💾 Capacity Estimates</h3>
-          <table class="capacity-table">
-            <thead>
-              <tr>
-                <th>Style</th>
-                <th>600×600</th>
-                <th>800×800</th>
-                <th>1200×1200</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>🔷 Geometric</td>
-                <td>~3 KB</td>
-                <td>~5 KB</td>
-                <td>~11 KB</td>
-              </tr>
-              <tr>
-                <td>🌿 Organic</td>
-                <td>~2.5 KB</td>
-                <td>~4 KB</td>
-                <td>~9 KB</td>
-              </tr>
-              <tr>
-                <td>🎯 Logo</td>
-                <td>~1.2 KB</td>
-                <td>~2 KB</td>
-                <td>~4.5 KB</td>
-              </tr>
-              <tr>
-                <td>📱 QR Hybrid</td>
-                <td>~5 KB</td>
-                <td>~8 KB</td>
-                <td>~18 KB</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- About Tab -->
-    <div id="about-tab" class="tab-content">
-      <div class="card">
-        <h2>About TIMECODE::STEGSVG</h2>
-
-        <div class="feature-grid">
-          <div class="feature">
-            <div class="feature-icon">🌈</div>
-            <h3>7D Multi-Channel Encoding</h3>
-            <p>Distributes data across 7 dimensions: X, Y (position), Z (layer), T (time), C (color), A (alpha), F (frequency)</p>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">🔐</div>
-            <h3>Built-in Encryption</h3>
-            <p>Optional encryption with visual keys, gzip compression, and error correction codes</p>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">🎨</div>
-            <h3>Beautiful Output</h3>
-            <p>Generate visually appealing SVGs in multiple artistic styles</p>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">✅</div>
-            <h3>Data Integrity</h3>
-            <p>Checksum verification ensures data hasn't been corrupted</p>
-          </div>
-        </div>
-
-        <div class="tech-details">
-          <h3>Technical Details</h3>
-          <ul>
-            <li><strong>Compression:</strong> Gzip compression reduces data size by up to 70%</li>
-            <li><strong>Encryption:</strong> XOR cipher with SHA-256 key derivation</li>
-            <li><strong>Error Correction:</strong> MD5 checksum with length verification</li>
-            <li><strong>Storage:</strong> Data embedded in custom SVG attributes</li>
-            <li><strong>Capacity:</strong> 1KB - 10MB+ depending on size and style</li>
-            <li><strong>Security:</strong> Below human perception threshold, requires knowledge of system to extract</li>
-          </ul>
-        </div>
-
-        <div class="github-link">
-          <a href="https://github.com/teslasolar/timecode" target="_blank" class="btn btn-primary">
-            ⭐ View on GitHub
-          </a>
-        </div>
-      </div>
-    </div>
+    <!-- Page Content -->
+    <div id="encode-page"></div>
+    <div id="decode-page"></div>
+    <div id="examples-page"></div>
+    <div id="about-page"></div>
   </main>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>TIMECODE::STEGSVG - Where art meets encryption 🎨🔐</p>
-      <p class="small">Built with JavaScript • No server required • All processing happens in your browser</p>
-    </div>
-  </footer>
+  <div id="footer-component"></div>
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
-  <script src="lib.js"></script>
-  <script src="app.js"></script>
+  <script src="js/loader.js"></script>
+  <script src="js/lib.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,75 @@
+<!-- Encode Page -->
+<div id="encode-tab" class="tab-content active">
+  <div class="card">
+    <h2>Encode Data into SVG</h2>
+
+    <div class="form-group">
+      <label for="encode-data">Data to Hide (JSON or plain text)</label>
+      <textarea
+        id="encode-data"
+        class="textarea"
+        placeholder='{ "message": "Secret data!", "timestamp": 1234567890 }'
+        rows="6"
+      ></textarea>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="encode-style">Visual Style</label>
+        <select id="encode-style" class="select">
+          <option value="geometric">🔷 Geometric</option>
+          <option value="organic">🌿 Organic</option>
+          <option value="logo">🎯 Logo</option>
+          <option value="qr-hybrid">📱 QR Hybrid</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="encode-size">SVG Size</label>
+        <select id="encode-size" class="select">
+          <option value="600">600×600</option>
+          <option value="800" selected>800×800</option>
+          <option value="1000">1000×1000</option>
+          <option value="1200">1200×1200</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="encode-key">
+        🔐 Encryption Key (optional)
+        <span class="help-text">Leave empty for no encryption</span>
+      </label>
+      <input
+        type="text"
+        id="encode-key"
+        class="input"
+        placeholder="my-secret-key"
+      />
+    </div>
+
+    <button id="encode-btn" class="btn btn-primary btn-large">
+      ✨ Generate SVG
+    </button>
+
+    <div id="encode-output" class="output hidden">
+      <h3>Generated SVG</h3>
+      <div class="stats">
+        <span id="encode-stats"></span>
+      </div>
+      <div class="svg-preview" id="svg-preview"></div>
+      <div class="btn-group">
+        <button id="download-svg-btn" class="btn btn-secondary">
+          📥 Download SVG
+        </button>
+        <button id="copy-svg-btn" class="btn btn-secondary">
+          📋 Copy SVG Code
+        </button>
+      </div>
+      <details class="code-details">
+        <summary>View SVG Source</summary>
+        <pre id="svg-source" class="code"></pre>
+      </details>
+    </div>
+  </div>
+</div>

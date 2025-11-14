@@ -1,0 +1,52 @@
+<!-- Decode Page -->
+<div id="decode-tab" class="tab-content">
+  <div class="card">
+    <h2>Decode Data from SVG</h2>
+
+    <div class="form-group">
+      <label for="decode-svg">SVG Code</label>
+      <textarea
+        id="decode-svg"
+        class="textarea"
+        placeholder="Paste your SVG code here..."
+        rows="8"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="decode-file">Or Upload SVG File</label>
+      <input
+        type="file"
+        id="decode-file"
+        class="input"
+        accept=".svg,image/svg+xml"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="decode-key">
+        🔐 Decryption Key (if encrypted)
+        <span class="help-text">Leave empty if no encryption was used</span>
+      </label>
+      <input
+        type="text"
+        id="decode-key"
+        class="input"
+        placeholder="my-secret-key"
+      />
+    </div>
+
+    <button id="decode-btn" class="btn btn-primary btn-large">
+      🔓 Extract Hidden Data
+    </button>
+
+    <div id="decode-output" class="output hidden">
+      <h3>Decoded Data</h3>
+      <div class="svg-preview" id="decode-svg-preview"></div>
+      <pre id="decode-result" class="code"></pre>
+      <button id="copy-data-btn" class="btn btn-secondary">
+        📋 Copy Data
+      </button>
+    </div>
+  </div>
+</div>
