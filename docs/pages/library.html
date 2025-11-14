@@ -1,0 +1,362 @@
+<!-- Library & Examples Gallery -->
+<div id="library-tab" class="tab-content">
+  <div class="card">
+    <h2>📚 Code Library & Examples</h2>
+    <p class="subtitle">Ready-to-use examples with complete code implementations</p>
+
+    <!-- Category Tabs -->
+    <div class="library-categories">
+      <button class="library-cat-btn active" data-category="qr">📱 QR Codes</button>
+      <button class="library-cat-btn" data-category="cv">🤖 CV Agents</button>
+      <button class="library-cat-btn" data-category="use-cases">🎯 Use Cases</button>
+    </div>
+
+    <!-- QR Codes Category -->
+    <div class="library-category active" data-category="qr">
+      <div class="library-grid">
+        <div class="library-item">
+          <div class="library-icon">📱</div>
+          <h3>Hybrid QR-SVG</h3>
+          <p>Scannable QR codes with hidden data layer</p>
+          <ul class="library-features">
+            <li>✓ Phone-scannable public layer</li>
+            <li>✓ Hidden encrypted data</li>
+            <li>✓ Dual functionality</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/qr-codes/hybrid-qr-svg.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadLibraryExample('qr-hybrid')">
+              ▶️ Try Demo
+            </button>
+          </div>
+        </div>
+
+        <div class="library-item">
+          <div class="library-icon">🎨</div>
+          <h3>Artistic QR Patterns</h3>
+          <p>Beautiful QR codes with brand colors</p>
+          <ul class="library-features">
+            <li>✓ Custom color schemes</li>
+            <li>✓ Logo overlays</li>
+            <li>✓ Still scannable</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/qr-codes/artistic-qr.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadLibraryExample('artistic-qr')">
+              ▶️ Try Demo
+            </button>
+          </div>
+        </div>
+
+        <div class="library-item">
+          <div class="library-icon">🔐</div>
+          <h3>Multi-Layer QR</h3>
+          <p>Multiple data layers in one QR code</p>
+          <ul class="library-features">
+            <li>✓ Public + private layers</li>
+            <li>✓ Progressive disclosure</li>
+            <li>✓ Access control</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/qr-codes/multi-layer.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadLibraryExample('multi-layer')">
+              ▶️ Try Demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-showcase">
+        <h3>💻 Quick Start Example</h3>
+        <pre class="code">// Generate hybrid QR-SVG
+const T = new Timecode({
+  style: 'qr-hybrid',
+  width: 1000,
+  height: 1000,
+  visualKey: 'secret-key'
+});
+
+const data = {
+  qr_payload: "https://example.com/verify/123",
+  hidden_data: {
+    admin_key: "sk-abc123",
+    permissions: ["read", "write"]
+  }
+};
+
+const svg = await T.enc(data);
+
+// Scan QR → https://example.com/verify/123
+// Extract hidden → { admin_key: "sk-abc123", ... }</pre>
+      </div>
+    </div>
+
+    <!-- CV Agents Category -->
+    <div class="library-category" data-category="cv">
+      <div class="library-grid">
+        <div class="library-item">
+          <div class="library-icon">🔍</div>
+          <h3>Pattern Detector</h3>
+          <p>Detect steganographic patterns in SVGs</p>
+          <ul class="library-features">
+            <li>✓ Auto-detect hidden data</li>
+            <li>✓ Style classification</li>
+            <li>✓ Capacity estimation</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/cv-agents/pattern-detector.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadCVAgent('pattern-detector')">
+              ▶️ Run Agent
+            </button>
+          </div>
+        </div>
+
+        <div class="library-item">
+          <div class="library-icon">🤖</div>
+          <h3>Data Extractor</h3>
+          <p>Automated data extraction agent</p>
+          <ul class="library-features">
+            <li>✓ Batch processing</li>
+            <li>✓ Error handling</li>
+            <li>✓ Export results</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/cv-agents/data-extractor.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadCVAgent('data-extractor')">
+              ▶️ Run Agent
+            </button>
+          </div>
+        </div>
+
+        <div class="library-item">
+          <div class="library-icon">🛡️</div>
+          <h3>Security Auditor</h3>
+          <p>Scan for tampering and malicious content</p>
+          <ul class="library-features">
+            <li>✓ Signature verification</li>
+            <li>✓ Malware detection</li>
+            <li>✓ Integrity checks</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/cv-agents/security-auditor.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadCVAgent('security-auditor')">
+              ▶️ Run Agent
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-showcase">
+        <h3>💻 CV Agent Example</h3>
+        <pre class="code">// Pattern detection agent
+class PatternDetectionAgent {
+  async analyze(svgString) {
+    const patterns = {
+      hasData: this.detectData(svgString),
+      encrypted: this.detectEncryption(svgString),
+      style: this.classifyStyle(svgString),
+      capacity: this.estimateCapacity(svgString)
+    };
+
+    return patterns;
+  }
+}
+
+// Usage
+const agent = new PatternDetectionAgent();
+const results = await agent.analyze(svg);
+
+console.log(results);
+// {
+//   hasData: true,
+//   encrypted: true,
+//   style: 'qr-hybrid',
+//   capacity: '8KB'
+// }</pre>
+      </div>
+    </div>
+
+    <!-- Use Cases Category -->
+    <div class="library-category" data-category="use-cases">
+      <div class="library-grid">
+        <div class="library-item">
+          <div class="library-icon">🎫</div>
+          <h3>Digital Tickets</h3>
+          <p>Complete ticketing system</p>
+          <ul class="library-features">
+            <li>✓ QR entry codes</li>
+            <li>✓ Anti-forgery protection</li>
+            <li>✓ Offline verification</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/use-cases/digital-tickets.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadUseCase('tickets')">
+              ▶️ Try Demo
+            </button>
+          </div>
+        </div>
+
+        <div class="library-item">
+          <div class="library-icon">🔑</div>
+          <h3>License Verification</h3>
+          <p>Software license management</p>
+          <ul class="library-features">
+            <li>✓ Embedded license keys</li>
+            <li>✓ Feature flags</li>
+            <li>✓ Expiration control</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/use-cases/license-verification.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadUseCase('license')">
+              ▶️ Try Demo
+            </button>
+          </div>
+        </div>
+
+        <div class="library-item">
+          <div class="library-icon">📦</div>
+          <h3>Product Authentication</h3>
+          <p>Anti-counterfeit protection</p>
+          <ul class="library-features">
+            <li>✓ Unique serial numbers</li>
+            <li>✓ Batch tracking</li>
+            <li>✓ Supply chain verification</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/use-cases/product-auth.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadUseCase('product')">
+              ▶️ Try Demo
+            </button>
+          </div>
+        </div>
+
+        <div class="library-item">
+          <div class="library-icon">💳</div>
+          <h3>Digital Business Cards</h3>
+          <p>Smart contact cards with metadata</p>
+          <ul class="library-features">
+            <li>✓ vCard QR codes</li>
+            <li>✓ Extended profile data</li>
+            <li>✓ Social links</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/use-cases/business-cards.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadUseCase('card')">
+              ▶️ Try Demo
+            </button>
+          </div>
+        </div>
+
+        <div class="library-item">
+          <div class="library-icon">📜</div>
+          <h3>Digital Certificates</h3>
+          <p>Verifiable credentials</p>
+          <ul class="library-features">
+            <li>✓ Tamper-proof</li>
+            <li>✓ Issuer signatures</li>
+            <li>✓ QR verification</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/use-cases/certificates.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadUseCase('cert')">
+              ▶️ Try Demo
+            </button>
+          </div>
+        </div>
+
+        <div class="library-item">
+          <div class="library-icon">🔐</div>
+          <h3>Secure Messaging</h3>
+          <p>Hidden messages in images</p>
+          <ul class="library-features">
+            <li>✓ End-to-end encryption</li>
+            <li>✓ Visual steganography</li>
+            <li>✓ Plausible deniability</li>
+          </ul>
+          <div class="library-actions">
+            <a href="library/use-cases/secure-messaging.md" target="_blank" class="btn btn-secondary btn-small">
+              📖 View Docs
+            </a>
+            <button class="btn btn-secondary btn-small" onclick="loadUseCase('message')">
+              ▶️ Try Demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-showcase">
+        <h3>💻 Complete Implementation Example</h3>
+        <pre class="code">// Digital Ticket System
+class TicketGenerator {
+  async generateTicket(info) {
+    const data = {
+      qr_payload: `https://verify/${info.id}`,
+      ticket_id: info.id,
+      event_name: info.event,
+      seat: info.seat,
+      purchaser: info.email,
+      signature: this.sign(info)
+    };
+
+    const T = new Timecode({
+      style: 'qr-hybrid',
+      visualKey: SECRET_KEY
+    });
+
+    return await T.enc(data);
+  }
+
+  sign(data) {
+    // HMAC signature for anti-forgery
+    return crypto.createHmac('sha256', SECRET)
+      .update(JSON.stringify(data))
+      .digest('hex');
+  }
+}
+
+// Verification at entrance
+class TicketVerifier {
+  async verify(svg) {
+    const data = await T.dec(svg);
+
+    if (!this.verifySignature(data)) {
+      return { valid: false, reason: 'Forged' };
+    }
+
+    return { valid: true, ticket: data };
+  }
+}</pre>
+      </div>
+    </div>
+
+    <!-- Browse All Examples -->
+    <div class="browse-all">
+      <h3>🗂️ Browse All Examples</h3>
+      <a href="library/README.md" target="_blank" class="btn btn-primary">
+        📚 View Complete Library
+      </a>
+    </div>
+  </div>
+</div>

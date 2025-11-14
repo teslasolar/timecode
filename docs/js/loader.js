@@ -30,6 +30,7 @@ async function loadComponents() {
   // Load pages
   await loadComponent('encode-page', 'pages/encode.html');
   await loadComponent('decode-page', 'pages/decode.html');
+  await loadComponent('library-page', 'pages/library.html');
   await loadComponent('examples-page', 'pages/examples.html');
   await loadComponent('about-page', 'pages/about.html');
 }

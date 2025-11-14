@@ -13,6 +13,11 @@ function init() {
   setupEncode();
   setupDecode();
   setupExamples();
+
+  // Initialize library if available
+  if (typeof initLibrary === 'function') {
+    initLibrary();
+  }
 }
 
 // ============================================================================
